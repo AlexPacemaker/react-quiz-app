@@ -49,8 +49,12 @@ const Main = ({ questions }) => {
             options={currentQuestionObj.options}
             setFieldValue={formik.setFieldValue}
           />
-          <button type='submit' onClick={formik.handleSubmit}>
-            Submit
+          <button
+            className={styles.submit}
+            type='submit'
+            onClick={formik.handleSubmit}
+          >
+            Ответить
           </button>
         </>
       ) : (
