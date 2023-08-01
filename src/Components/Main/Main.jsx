@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
+import { Link } from "react-router-dom";
 import styles from "./Main.module.scss";
 import Question from "../Question/Question";
 
@@ -26,6 +27,12 @@ const Main = ({ questions }) => {
       handleNext();
     }
     setSubmitting(false);
+  };
+
+  const resetTest = () => {
+    setCurrentQuestion(0);
+    setCorrectAnswers(0);
+    setFinished(false);
   };
 
   const formik = useFormik({
@@ -58,12 +65,15 @@ const Main = ({ questions }) => {
           </button>
         </>
       ) : (
-        <>
-          <h2>Тест завершен!</h2>
-          <h3>
+        <div className={styles.endTest}>
+          <h2 className={styles.endtestTitle}>Тест завершен!</h2>
+          <h3 className={styles.endtestResult}>
             Верное количество ответов: {correctAnswers} из {questions.length}
           </h3>
-        </>
+          <button className={styles.restartButton} onClick={resetTest}>
+            Начать тест заново
+          </button>
+        </div>
       )}
     </div>
   );

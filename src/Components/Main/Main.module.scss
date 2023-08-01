@@ -26,4 +26,18 @@
       transition: 0.3s ease-in-out;
     }
   }
+  .endTest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .endtestTitle {
+    }
+
+    .endtestResult {
+    }
+
+    .restartButton {
+    }
+  }
 }
