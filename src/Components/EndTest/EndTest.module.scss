@@ -1,0 +1,33 @@
+.endTest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  transition: 0.3s ease-in-out;
+
+  .endtestTitle {
+    font-size: 50px;
+    margin-bottom: 30px;
+  }
+
+  .endtestResult {
+    font-size: 25px;
+    margin-bottom: 30px;
+  }
+
+  .restartButton {
+    font-size: 25px;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: crimson;
+    color: white;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 15px 2px grey;
+    }
+    &:active {
+      transform: translateY(5px);
+      transition: 0.3s ease-in-out;
+    }
+  }
+}
