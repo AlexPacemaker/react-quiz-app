@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
 import styles from "./Main.module.scss";
 import Question from "../Question/Question";
+import EndTest from "../EndTest/EndTest";
 
 const Main = ({ questions }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -65,7 +65,11 @@ const Main = ({ questions }) => {
           </button>
         </>
       ) : (
-      
+        <EndTest
+          correctAnswers={correctAnswers}
+          questionsLength={questions.length}
+          resetTest={resetTest}
+        />
       )}
     </div>
   );
