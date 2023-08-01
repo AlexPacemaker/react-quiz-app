@@ -65,15 +65,7 @@ const Main = ({ questions }) => {
           </button>
         </>
       ) : (
-        <div className={styles.endTest}>
-          <h2 className={styles.endtestTitle}>Тест завершен!</h2>
-          <h3 className={styles.endtestResult}>
-            Верное количество ответов: {correctAnswers} из {questions.length}
-          </h3>
-          <button className={styles.restartButton} onClick={resetTest}>
-            Начать тест заново
-          </button>
-        </div>
+      
       )}
     </div>
   );
