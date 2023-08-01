@@ -11,7 +11,7 @@ export const questions = [
   {
     question: "Как объявить переменную в JavaScript?",
     options: ["var, let, const", "int", "string"],
-    answer: "var",
+    answer: "var, let, const",
   },
   {
     question: "Что такое closure (замыкание) в JavaScript?",
