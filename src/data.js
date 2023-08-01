@@ -10,7 +10,7 @@ export const questions = [
   },
   {
     question: "Как объявить переменную в JavaScript?",
-    options: ["var", "int", "string"],
+    options: ["var, let, const", "int", "string"],
     answer: "var",
   },
   {

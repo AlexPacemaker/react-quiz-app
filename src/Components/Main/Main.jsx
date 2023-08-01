@@ -38,10 +38,10 @@ const Main = ({ questions }) => {
   const currentQuestionObj = questions[currentQuestion];
 
   return (
-    <div className='App'>
+    <div className={styles.Main}>
       {!finished ? (
         <>
-          <h2>
+          <h2 className={styles.title}>
             Вопрос {currentQuestion + 1} из {questions.length}
           </h2>
           <Question

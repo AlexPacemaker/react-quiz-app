@@ -3,21 +3,23 @@ import styles from "./Question.module.scss";
 
 const Question = ({ question, options, setFieldValue }) => {
   return (
-    <>
-      <h3>{question}</h3>
+    <div className={styles.Question}>
+      <h3 className={styles.title}>{question}</h3>
       <form>
-        {options.map((option, index) => (
-          <button
-            key={index}
-            type="button"
-            onClick={() => setFieldValue("answer", option)}
-          >
-            {option}
-          </button>
-        ))}
+        <div className={styles.options}>
+          {options.map((option, index) => (
+            <button
+              key={index}
+              type='button'
+              onClick={() => setFieldValue("answer", option)}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 
-export default Question
+export default Question;
