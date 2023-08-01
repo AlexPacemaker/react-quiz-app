@@ -1,25 +1,23 @@
 import React from "react";
 import styles from "./Question.module.scss";
 
-const Question = ({ question, options, onSelect, selectedOption }) => {
-  const handleOptionSelect = (option) => {
-    onSelect(option);
-  };
-
+const Question = ({ question, options, setFieldValue }) => {
   return (
-    <div className={styles.Question}>
-      <h3 className={styles.QuestionTitle}>{question}</h3>
-      {options.map((option) => (
-        <button
-          key={option}
-          onClick={() => handleOptionSelect(option)}
-          className={selectedOption === option ? styles.SelectedOption : ""}
-        >
-          {option}
-        </button>
-      ))}
-    </div>
+    <>
+      <h3>{question}</h3>
+      <form>
+        {options.map((option, index) => (
+          <button
+            key={index}
+            type="button"
+            onClick={() => setFieldValue("answer", option)}
+          >
+            {option}
+          </button>
+        ))}
+      </form>
+    </>
   );
 };
 
-export default Question;
+export default Question
