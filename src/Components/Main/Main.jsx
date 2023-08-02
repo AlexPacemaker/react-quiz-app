@@ -31,6 +31,7 @@ const Main = () => {
     const correctAnswer = questions[currentQuestion].answer;
     return selectedAnswer === correctAnswer;
   };
+
   const handleSubmit = (values, { setSubmitting }) => {
     if (!selectedAnswer) {
       alert("Пожалуйста, выберите ответ.");
