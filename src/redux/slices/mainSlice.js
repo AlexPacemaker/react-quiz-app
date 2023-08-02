@@ -6,26 +6,30 @@ const initialState = {
   incorrectAnswers: 0,
   finished: false,
   questions: [],
+  selectedAnswer: null,
 };
 
 export const mainSlice = createSlice({
   name: "@main",
   initialState,
   reducers: {
-    setCurrentQuestion(state) {
-      state.currentQuestion += 1;
+    setCurrentQuestion(state, action) {
+      state.currentQuestion = action.payload;
     },
-    setCorrectAnswers(state) {
-      state.correctAnswers += 1;
+    setCorrectAnswers(state, action) {
+      state.correctAnswers = action.payload;
     },
-    setIncorrectAnswers(state) {
-      state.incorrectAnswers += 1;
+    setIncorrectAnswers(state, action) {
+      state.incorrectAnswers = action.payload;
     },
     setFinished(state, action) {
       state.finished = action.payload;
     },
     setQuestions(state, action) {
       state.questions = action.payload;
+    },
+    setSelectedAnswer(state, action) {
+      state.selectedAnswer = action.payload;
     },
   },
 });
@@ -41,6 +45,8 @@ export const {
   setIncorrectAnswers,
   setFinished,
   setQuestions,
+  selectedAnswer,
+  setSelectedAnswer,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

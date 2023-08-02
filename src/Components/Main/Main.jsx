@@ -11,6 +11,7 @@ import {
   setIncorrectAnswers,
   setQuestions,
   setCurrentQuestion,
+  setSelectedAnswer,
 } from "../../redux/slices/mainSlice";
 
 const Main = () => {
@@ -20,9 +21,8 @@ const Main = () => {
     incorrectAnswers,
     finished,
     questions,
+    selectedAnswer,
   } = useSelector((state) => state.mainSlice);
-
-  const [selectedAnswer, setSelectedAnswer] = React.useState("");
 
   const dispatch = useDispatch();
 
@@ -64,7 +64,7 @@ const Main = () => {
       handleNext();
     }
 
-    setSelectedAnswer(""); // Сброс выбранного ответа после проверки
+    dispatch(setSelectedAnswer(null)); // Сброс выбранного ответа после проверки
     setSubmitting(false);
   };
 
@@ -77,7 +77,7 @@ const Main = () => {
 
   const formik = useFormik({
     initialValues: {
-      selectedAnswer: "",
+      selectedAnswer: null,
     },
     onSubmit: handleSubmit,
   });
