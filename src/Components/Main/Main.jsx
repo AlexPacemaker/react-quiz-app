@@ -1,30 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import axios from "axios";
 import styles from "./Main.module.scss";
 import Question from "../Question/Question";
 import EndTest from "../EndTest/EndTest";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setFinished,
+  setCorrectAnswers,
+  setIncorrectAnswers,
+  setQuestions,
+  setCurrentQuestion,
+} from "../../redux/slices/mainSlice";
 
 const Main = () => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
-  const [finished, setFinished] = useState(false);
-  const [questions, setQuestions] = useState([]);
-  const [selectedAnswer, setSelectedAnswer] = useState("");
+  const {
+    currentQuestion,
+    correctAnswers,
+    incorrectAnswers,
+    finished,
+    questions,
+  } = useSelector((state) => state.mainSlice);
+
+  const [selectedAnswer, setSelectedAnswer] = React.useState("");
+
+  const dispatch = useDispatch();
 
   const API = "https://alex-pacemaker.ru/quiz";
 
-  useEffect(() => {
+  React.useEffect(() => {
     (async () => {
       await axios.get(API).then((res) => {
-        setQuestions(res.data);
+        dispatch(setQuestions(res.data));
       });
     })();
   }, []);
 
   const handleNext = () => {
-    setCurrentQuestion(currentQuestion + 1);
+    dispatch(setCurrentQuestion(currentQuestion + 1));
   };
 
   const checkAnswer = () => {
@@ -40,13 +53,13 @@ const Main = () => {
     }
 
     if (checkAnswer()) {
-      setCorrectAnswers(correctAnswers + 1);
+      dispatch(setCorrectAnswers(correctAnswers + 1));
     } else {
-      setIncorrectAnswers(incorrectAnswers + 1);
+      dispatch(setIncorrectAnswers(incorrectAnswers + 1));
     }
 
     if (currentQuestion === questions.length - 1) {
-      setFinished(true);
+      dispatch(setFinished(true));
     } else {
       handleNext();
     }
@@ -56,15 +69,15 @@ const Main = () => {
   };
 
   const resetTest = () => {
-    setCurrentQuestion(0);
-    setCorrectAnswers(0);
-    setIncorrectAnswers(0);
-    setFinished(false);
+    dispatch(setCurrentQuestion(0));
+    dispatch(setCorrectAnswers(0));
+    dispatch(setIncorrectAnswers(0));
+    dispatch(setFinished(false));
   };
 
   const formik = useFormik({
     initialValues: {
-      answer: "",
+      selectedAnswer: "",
     },
     onSubmit: handleSubmit,
   });

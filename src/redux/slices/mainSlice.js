@@ -6,7 +6,6 @@ const initialState = {
   incorrectAnswers: 0,
   finished: false,
   questions: [],
-  selectedAnswer: "",
 };
 
 export const mainSlice = createSlice({
@@ -28,9 +27,6 @@ export const mainSlice = createSlice({
     setQuestions(state, action) {
       state.questions = action.payload;
     },
-    setSelectedAnswer(state, action) {
-      state.selectedAnswer = action.payload;
-    },
   },
 });
 
@@ -40,13 +36,11 @@ export const {
   incorrectAnswers,
   finished,
   questions,
-  selectedAnswer,
   setCurrentQuestion,
   setCorrectAnswers,
   setIncorrectAnswers,
   setFinished,
   setQuestions,
-  setSelectedAnswer,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;
