@@ -8,8 +8,10 @@ import EndTest from "../EndTest/EndTest";
 const Main = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
   const [finished, setFinished] = useState(false);
   const [questions, setQuestions] = useState([]);
+  const [selectedAnswer, setSelectedAnswer] = useState("");
 
   const API = "https://alex-pacemaker.ru/quiz";
 
@@ -25,25 +27,37 @@ const Main = () => {
     setCurrentQuestion(currentQuestion + 1);
   };
 
-  const checkAnswer = (values) => {
-    return values.answer === questions[currentQuestion].answer;
+  const checkAnswer = () => {
+    const correctAnswer = questions[currentQuestion].answer;
+    return selectedAnswer === correctAnswer;
   };
-
   const handleSubmit = (values, { setSubmitting }) => {
-    if (checkAnswer(values)) {
-      setCorrectAnswers(correctAnswers + 1);
+    if (!selectedAnswer) {
+      alert("Пожалуйста, выберите ответ.");
+      setSubmitting(false);
+      return;
     }
+
+    if (checkAnswer()) {
+      setCorrectAnswers(correctAnswers + 1);
+    } else {
+      setIncorrectAnswers(incorrectAnswers + 1);
+    }
+
     if (currentQuestion === questions.length - 1) {
       setFinished(true);
     } else {
       handleNext();
     }
+
+    setSelectedAnswer(""); // Сброс выбранного ответа после проверки
     setSubmitting(false);
   };
 
   const resetTest = () => {
     setCurrentQuestion(0);
     setCorrectAnswers(0);
+    setIncorrectAnswers(0);
     setFinished(false);
   };
 
@@ -68,7 +82,8 @@ const Main = () => {
             <Question
               questions={currentQuestionObj.question}
               options={currentQuestionObj.options}
-              setFieldValue={formik.setFieldValue}
+              selectedAnswer={selectedAnswer}
+              setSelectedAnswer={setSelectedAnswer}
             />
           )}
           <button
