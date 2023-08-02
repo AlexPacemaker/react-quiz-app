@@ -3,6 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  margin-bottom: 40px;
   .title {
     font-size: 30px;
     margin-bottom: 40px;
@@ -22,12 +24,16 @@
       background-color: crimson;
       color: white;
       padding: 5px;
+      box-shadow: 0 0 15px 5px grey;
       &:last-child {
         margin-right: 0;
       }
       &:focus {
         background-color: black;
         color: white;
+      }
+      &:hover {
+        cursor: pointer;
       }
     }
   }

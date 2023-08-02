@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Question.module.scss";
 
-const Question = ({ question, options, setFieldValue }) => {
+const Question = ({ questions, options, setFieldValue }) => {
   return (
     <div className={styles.Question}>
-      <h3 className={styles.title}>{question}</h3>
+      <h3 className={styles.title}>{questions}</h3>
       <form>
         <div className={styles.options}>
           {options.map((option, index) => (
