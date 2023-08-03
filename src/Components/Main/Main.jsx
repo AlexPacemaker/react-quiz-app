@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import axios from "axios";
 import styles from "./Main.module.scss";
@@ -11,7 +11,6 @@ import {
   setIncorrectAnswers,
   setQuestions,
   setCurrentQuestion,
-  setSelectedAnswer,
 } from "../../redux/slices/mainSlice";
 
 const Main = () => {
@@ -21,8 +20,9 @@ const Main = () => {
     incorrectAnswers,
     finished,
     questions,
-    selectedAnswer,
   } = useSelector((state) => state.mainSlice);
+
+  const [selectedAnswer, setSelectedAnswer] = useState("");
 
   const dispatch = useDispatch();
 
@@ -64,7 +64,7 @@ const Main = () => {
       handleNext();
     }
 
-    dispatch(setSelectedAnswer(null)); // Сброс выбранного ответа после проверки
+    dispatch(setSelectedAnswer("")); // Сброс выбранного ответа после проверки
     setSubmitting(false);
   };
 
